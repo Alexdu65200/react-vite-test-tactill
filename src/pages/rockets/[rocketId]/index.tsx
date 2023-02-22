@@ -6,6 +6,8 @@ import { RocketDto } from "../../../dtos/rocket.dto";
 import Card from "../../../components/Card/Card";
 import defaultRocketImage from "../../../assets/default-rocket.jpg";
 import RocketDetailsTab from "../../../components/Rockets/RocketDetailsTab";
+import LaunchCard from "../../../components/Launch";
+import { LaunchDto } from "../../../dtos/launch.dto";
 
 const RocketDetails = () => {
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ const RocketDetails = () => {
 
   const { rocketId } = useParams<{ rocketId: string }>();
   const [rocket, setRocket] = useState<RocketDto>();
+  const [launches, setLaunches] = useState<LaunchDto[]>([]);
   const [error, setError] = useState<string>();
   const rocketService = new RocketService();
 
@@ -24,10 +27,19 @@ const RocketDetails = () => {
     }
   };
 
+  const getLaunchByRocketId = async (rocketId: string) => {
+    try {
+      setLaunches(await rocketService.getLaunchByRocketId(rocketId));
+    } catch (error) {
+      setError("Une erreur est survenue: " + error);
+    }
+  };
+
   if (!rocketId) return <> {() => navigate("/")}</>;
 
   useEffect(() => {
     getRocketById(rocketId);
+    getLaunchByRocketId(rocketId);
   }, [rocketId]);
 
   if (!rocket) return <Loader />;
@@ -36,6 +48,10 @@ const RocketDetails = () => {
     {
       label: "Détails",
       content: <RocketDetailsTab rocket={rocket} />,
+    },
+    {
+      label: "Lancements",
+      content: <LaunchCard launches={launches} />,
     },
   ];
 

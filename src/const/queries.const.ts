@@ -114,4 +114,16 @@ export default {
       wikipedia
     }
   }`,
+  getLaunchesByRocketId: gql`
+    query Rockets($find: LaunchFind) {
+     launches(find: $find) {
+       id
+       details
+       launch_date_utc
+       launch_site {
+         site_name
+       }
+       mission_name
+     }
+   }`
 };
