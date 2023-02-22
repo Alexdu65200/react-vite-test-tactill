@@ -38,6 +38,10 @@ const Home = () => {
   const getShips = async (limit: number) => {
     try {
       setShips(await shipService.getShips(limit));
+      setScroll({
+        ships: { limit: limit + 4 },
+        rockets: scroll.rockets,
+      });
     } catch (error) {
       setError("Une erreur est survenue: " + error);
     }
