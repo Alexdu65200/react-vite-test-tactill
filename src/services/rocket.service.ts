@@ -15,11 +15,13 @@ export class RocketService {
         this.client = ApolloSingleton.getInstance()
     }
 
-    async getRockets(): Promise<RocketDto[]> {
+    async getRockets(limit?: number): Promise<RocketDto[]> {
         try {
             const { data, error } = await this.client
                 .query({
                     query: queriesConst.getRockets,
+                    variables: { limit }
+
                 })
             if (error) throw new ApolloError(error)
             return data.rockets as RocketDto[];

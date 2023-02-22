@@ -15,11 +15,12 @@ export class ShipService {
         this.client = ApolloSingleton.getInstance()
     }
 
-    async getShips(): Promise<ShipDto[]> {
+    async getShips(limit?: number): Promise<ShipDto[]> {
         try {
             const { data, error } = await this.client
                 .query({
                     query: queriesConst.getShips,
+                    variables: { limit }
                 })
             if (error) throw new ApolloError(error)
             return data.ships as ShipDto[];
