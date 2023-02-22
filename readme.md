@@ -12,6 +12,14 @@ Prérequis :
 yarn
 ```
 
+### Installer les variables d'environnement
+
+Créer un fichier .env à la racine et saisir
+
+```sh
+VITE_GOOGLE_MAPS_API=VOTE_GOOGLE_MAPS_API
+```
+
 ### Lancer le projet
 
 ```sh

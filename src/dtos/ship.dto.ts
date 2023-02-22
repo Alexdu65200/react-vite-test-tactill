@@ -1,4 +1,5 @@
 export type ShipDto = {
+    __typename: string;
     id: string;
     name: string
     type: string

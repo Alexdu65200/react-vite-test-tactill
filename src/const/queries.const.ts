@@ -25,4 +25,20 @@ export default {
       }
     }
   `,
+  getRockets: gql`
+    query Rockets {
+      rockets {
+        id
+        name
+        description
+        company
+        mass {
+          kg
+        }
+        height {
+          meters
+        }
+      }
+    }
+    `,
 };

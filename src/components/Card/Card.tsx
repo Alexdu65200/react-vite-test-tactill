@@ -20,7 +20,7 @@ const Card = ({
   titleEmoji = "",
   description,
   descriptionMaxLength = 20,
-  titleMaxLength = 23,
+  titleMaxLength = 19,
   badge = "",
   className,
   style,
