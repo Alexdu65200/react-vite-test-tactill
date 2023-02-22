@@ -106,7 +106,7 @@ const Home = () => {
                     titleEmoji="🚀"
                     description={s.description}
                     descriptionMaxLength={100}
-                    handleClick={() => console.log("rocketId Clicked", s.id)}
+                    handleClick={() => navigate(`/rockets/${s.id}`)}
                     badge={s.company}
                   />
                 ) : "image" in s && s.__typename == "Ship" ? (

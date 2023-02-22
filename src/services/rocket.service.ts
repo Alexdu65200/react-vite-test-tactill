@@ -26,4 +26,18 @@ export class RocketService {
             throw new Error(`Erreur lors de la récupération des rockets`);
         }
     }
+
+    async getRocketById(rocketId: string): Promise<RocketDto> {
+        try {
+            const { data, error } = await this.client
+                .query({
+                    query: queriesConst.getRocketById,
+                    variables: { rocketId }
+                })
+            if (error) throw new ApolloError(error)
+            return data.rocket as RocketDto;
+        } catch (error) {
+            throw new Error(`Erreur lors de la récupération de la rocket avec l'ID ${rocketId}`);
+        }
+    }
 }
