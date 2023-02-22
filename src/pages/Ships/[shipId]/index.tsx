@@ -3,6 +3,7 @@ import { ShipService } from "../../../services/ship.service";
 import { ShipDto } from "../../../dtos/ship.dto";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import Card from "../../../components/Card/Card";
+import { Loader } from "../../../components/Loader/Loader";
 
 const ShipDetails = () => {
   const navigate = useNavigate();
@@ -28,8 +29,7 @@ const ShipDetails = () => {
     getShipById(shipId);
   }, [shipId]);
 
-  if (error) return <>{error}</>;
-  if (!ship) return <> chargement... </>;
+  if (!ship) return <Loader />;
 
   return (
     <div className="mx-auto max-w-7xl">
@@ -46,22 +46,26 @@ const ShipDetails = () => {
         </div>
       </header>
       <main>
-        <div className="flex flex-row mt-8 px-5 space-x-4">
-          <div className="basis-1/4">
-            <Card
-              style={{ width: 350, height: 400 }}
-              imageURL={ship.image}
-              title={ship.name}
-              titleEmoji="🛥️"
-              description={`Roles: ${ship.roles.map((role) => role)}`}
-              descriptionMaxLength={100}
-              footer={ship.home_port}
-            />
+        {!error ? (
+          <div className="flex flex-row mt-8 px-5 space-x-4">
+            <div className="basis-1/4">
+              <Card
+                style={{ width: 350, height: 400 }}
+                imageURL={ship.image}
+                title={ship.name}
+                titleEmoji="🛥️"
+                description={`Roles: ${ship.roles.map((role) => role)}`}
+                descriptionMaxLength={100}
+                footer={ship.home_port}
+              />
+            </div>
+            <div className="basis-3/4 border-gray-200 md:p-4 border-2 rounded-lg">
+              <>détails ....</>
+            </div>
           </div>
-          <div className="basis-3/4 border-gray-200 md:p-4 border-2 rounded-lg">
-            <>détails ....</>
-          </div>
-        </div>
+        ) : (
+          <p>{error}</p>
+        )}
       </main>
     </div>
   );

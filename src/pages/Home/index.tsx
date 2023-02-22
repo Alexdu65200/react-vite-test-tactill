@@ -3,6 +3,7 @@ import { ShipDto } from "../../dtos/ship.dto";
 import { ShipService } from "../../services/ship.service";
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../../components/Loader/Loader";
 
 const Home = () => {
   const [ships, setShips] = useState<ShipDto[]>([]);
@@ -17,7 +18,7 @@ const Home = () => {
     getShips();
   });
 
-  if (!ships) return <>chargement en cours ...</>;
+  if (!ships) return <Loader />;
 
   return (
     <div className="grid grid-cols-3 gap-4">
