@@ -4,6 +4,7 @@ import { ShipDto } from "../../../dtos/ship.dto";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import Card from "../../../components/Card/Card";
 import { Loader } from "../../../components/Loader/Loader";
+import { MapContainer } from "../../../components/Map/MapContainer";
 
 const ShipDetails = () => {
   const navigate = useNavigate();
@@ -60,7 +61,8 @@ const ShipDetails = () => {
               />
             </div>
             <div className="basis-3/4 border-gray-200 md:p-4 border-2 rounded-lg">
-              <>détails ....</>
+              <h2 className="font-sans"> Emplacement du navire</h2>
+              <MapContainer ship={ship} />
             </div>
           </div>
         ) : (

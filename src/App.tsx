@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import ShipDetails from "./pages/Ships/[shipId]";
+import Home from "./pages/home";
+import ShipDetails from "./pages/ships/[shipId]";
 
 const App = () => {
   return (

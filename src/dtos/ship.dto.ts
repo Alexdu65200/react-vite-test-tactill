@@ -5,4 +5,8 @@ export type ShipDto = {
     image: string;
     roles: string[];
     home_port: string;
+    position: {
+        latitude: number
+        longitude: number
+    }
 }
