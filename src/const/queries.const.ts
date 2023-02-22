@@ -7,6 +7,9 @@ export default {
         id
         name
         type
+        roles
+        home_port
+        image
       }
     }
   `,
