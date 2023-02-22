@@ -13,4 +13,16 @@ export default {
       }
     }
   `,
+  getShipById: gql`
+    query Ship($id: ID!) {
+      ship(id: $id) {
+        id
+        name
+        type
+        roles
+        home_port
+        image
+      }
+    }
+  `,
 };

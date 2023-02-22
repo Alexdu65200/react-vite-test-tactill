@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { ShipDto } from "../../dtos/ship.dto";
 import { ShipService } from "../../services/ship.service";
 import Card from "../../components/Card/Card";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [ships, setShips] = useState<ShipDto[]>([]);
+  const navigate = useNavigate();
   const shipService = new ShipService();
 
   const getShips = async () => {
@@ -29,7 +31,7 @@ const Home = () => {
           titleEmoji="🛥️"
           description={`Roles: ${s.roles.map((role) => role)}`}
           descriptionMaxLength={100}
-          handleClick={() => console.log("card clicked", s.id)}
+          handleClick={() => navigate(`/ships/${s.id}`)}
           footer={s.home_port}
         />
       ))}

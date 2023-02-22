@@ -27,4 +27,19 @@ export class ShipService {
             throw new Error(`Erreur lors de la récupération des navires`);
         }
     }
+
+    async getShipById(shipId: string): Promise<ShipDto> {
+        try {
+            const { data, error } = await this.client
+                .query({
+                    query: queriesConst.getShipById,
+                    variables: { id: shipId }
+                })
+            if (error) throw new ApolloError(error)
+            return data.ship as ShipDto;
+        } catch (error) {
+            throw new Error(`Erreur lors de la récupération du navire avec l'ID ${shipId}`);
+        }
+    }
+
 }
