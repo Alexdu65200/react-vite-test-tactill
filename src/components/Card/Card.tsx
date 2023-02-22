@@ -5,7 +5,7 @@ interface Props {
   title: string;
   titleEmoji?: string;
   description: string;
-  footer?: string;
+  badge?: string;
   descriptionMaxLength?: number;
   titleMaxLength?: number;
   className?: string;
@@ -21,7 +21,7 @@ const Card = ({
   description,
   descriptionMaxLength = 20,
   titleMaxLength = 23,
-  footer = "",
+  badge = "",
   className,
   style,
   handleClick,
@@ -65,7 +65,7 @@ const Card = ({
           </div>
         </div>
         <div className="bg-gray-700 text-white text-xs uppercase font-bold rounded-full p-2 absolute top-0 ml-2 mt-2">
-          <span>{footer}</span>
+          <span>{badge}</span>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import Card from "../../../components/Card/Card";
 import { Loader } from "../../../components/Loader/Loader";
 import { MapContainer } from "../../../components/Map/MapContainer";
+import defaultShipImage from "../../../assets/default-ship.jpg";
 
 const ShipDetails = () => {
   const navigate = useNavigate();
@@ -52,12 +53,12 @@ const ShipDetails = () => {
             <div className="basis-1/4">
               <Card
                 style={{ width: 350, height: 400 }}
-                imageURL={ship.image}
+                imageURL={ship.image ? ship.image : defaultShipImage} // Dans certains cas où l'image est undefined je défini une image par default
                 title={ship.name}
                 titleEmoji="🛥️"
                 description={`Roles: ${ship.roles.map((role) => role)}`}
                 descriptionMaxLength={100}
-                footer={ship.home_port}
+                badge={ship.home_port}
               />
             </div>
             <div className="basis-3/4 border-gray-200 md:p-4 border-2 rounded-lg">
